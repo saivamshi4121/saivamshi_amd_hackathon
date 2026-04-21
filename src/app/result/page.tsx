@@ -5,24 +5,13 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Pattern, DangerWindow, Nudge, Persona } from "@/types";
 import { Badge } from "@/components/ui/badge";
+import { DangerTimeline } from "@/components/DangerTimeline";
 
 // ─── Risk Colors ────────────────────────────────────────────
 const riskChip = {
   high: "bg-red-500/15 text-red-400 border-red-500/20",
   medium: "bg-yellow-500/15 text-yellow-400 border-yellow-500/20",
   low: "bg-green-500/15 text-green-400 border-green-500/20",
-};
-
-const riskBorder = {
-  high: "border-l-red-500",
-  medium: "border-l-yellow-500",
-  low: "border-l-green-500",
-};
-
-const riskGlow = {
-  high: "bg-red-500",
-  medium: "bg-yellow-500",
-  low: "bg-green-500",
 };
 
 // ─── Animations ─────────────────────────────────────────────
@@ -188,38 +177,7 @@ export default function ResultPage() {
               Danger Windows ⚠️
             </h2>
 
-            <div className="bg-white/[0.04] border border-white/[0.08] rounded-xl p-3 text-sm text-gray-400">
-              Most of your unhealthy decisions happen during these time windows.
-            </div>
-
-            <div className="relative space-y-0">
-              <div className="absolute left-[11px] top-2 bottom-2 w-0.5 bg-white/10" />
-              {windows.map((w, i) => (
-                <motion.div
-                  key={i}
-                  variants={fadeUp}
-                  className="relative flex gap-4 pb-5 last:pb-0"
-                >
-                  <div
-                    className={`relative z-10 mt-1.5 w-[22px] h-[22px] shrink-0 rounded-full border-2 border-[#0a0a0f] ${riskGlow[w.risk]} shadow-sm`}
-                  />
-                  <div
-                    className={`flex-1 border-l-4 ${riskBorder[w.risk]} bg-white/[0.04] backdrop-blur-sm p-4 rounded-r-xl`}
-                  >
-                    <div className="flex items-start justify-between gap-3 mb-1">
-                      <h4 className="font-bold text-base">{w.timeRange}</h4>
-                      <Badge
-                        variant="outline"
-                        className={`shrink-0 uppercase text-[10px] font-bold ${riskChip[w.risk]}`}
-                      >
-                        {w.risk} risk
-                      </Badge>
-                    </div>
-                    <p className="text-sm text-gray-400">{w.reason}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+            <DangerTimeline windows={windows} />
           </motion.section>
         </div>
 

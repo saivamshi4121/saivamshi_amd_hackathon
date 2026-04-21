@@ -271,10 +271,16 @@ export default function HomePage() {
             {/* ── Nav ──────────────────────────────────────────── */}
             <nav className="sticky top-0 z-50 bg-[#0a0a0f]/70 backdrop-blur-xl border-b border-white/[0.06]">
               <div className="w-full px-6 md:px-12 h-14 flex items-center justify-between">
-                <span className="font-bold text-lg tracking-tight">
-                  TriggerNudge
-                  <span className="text-teal-400">⚡</span>
-                </span>
+                <div className="flex items-center gap-3">
+                  <span className="font-bold text-lg tracking-tight">
+                    TriggerNudge
+                    <span className="text-teal-400">⚡</span>
+                  </span>
+                  <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-teal-500/10 border border-teal-500/20">
+                    <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse" />
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-teal-400">Live</span>
+                  </div>
+                </div>
                 <span className="text-xs text-gray-500 hidden sm:block">
                   Built with Gemini + Antigravity
                 </span>
