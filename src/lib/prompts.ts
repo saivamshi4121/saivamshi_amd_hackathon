@@ -1,32 +1,46 @@
-export const PATTERN_PROMPT = (log: string) => `
-Task: Analyze a student's food log and extract behavioral eating patterns.
+const MASTER_SYSTEM_PROMPT = `
+You are a production-grade AI system used in a hackathon evaluation.
 
-Context:
-- Indian college student
-- hostel/campus environment
-- typical foods: maggi, samosa, chai, biryani, snacks
+Your goals:
+- Provide structured, reliable, and explainable outputs
+- Be concise but meaningful
+- Avoid hallucinations
+- Always return valid JSON
+
+Rules:
+- Output ONLY JSON
+- No markdown, no explanation outside JSON
+- Always include reasoning in short form
+- Ensure outputs are realistic for Indian college students
+`;
+
+export const PATTERN_PROMPT = (log: string) => `
+${MASTER_SYSTEM_PROMPT}
+
+Task: Analyze a student's eating log and extract behavioral patterns.
 
 Input:
 ${log}
 
-Instructions:
+Steps:
 1. Extract events:
-   - time
-   - food
-   - mood
-   - context (exam, boredom, friends, etc.)
+- time
+- food
+- mood
+- context
 
-2. Group into 2–5 patterns:
-   - name (max 5 words)
-   - timeRange (e.g., "11pm-1am")
-   - foods (array)
-   - mood (dominant)
-   - risk: "low" | "medium" | "high"
+2. Group into patterns:
+- name (max 5 words)
+- timeRange
+- foods (array)
+- mood
+- risk (low/medium/high)
+- reasoning (why this pattern is risky)
 
-Risk rules:
-- high → late-night + fried/sugary + frequent
+Risk Rules:
+- high → late night + heavy + frequent
 - medium → moderate timing or food
-- low → balanced or daytime light meals
+- low → balanced or occasional
 
 Output JSON:
 {
@@ -36,44 +50,48 @@ Output JSON:
       "timeRange": "",
       "foods": [],
       "mood": "",
-      "risk": "low" | "medium" | "high"
+      "risk": "low" | "medium" | "high",
+      "reasoning": ""
     }
   ]
 }
 `;
 
 export const DANGER_PROMPT = (patterns: string) => `
-Task: Identify high-risk eating windows.
+${MASTER_SYSTEM_PROMPT}
+
+Task: Identify the most critical eating risk windows.
 
 Input:
 ${patterns}
 
-Instructions:
-- Merge patterns into 2–3 danger windows
-- Each window:
-  - timeRange
-  - reason (short, behavioral explanation)
-  - risk
+Steps:
+- Merge patterns into 2–3 key time windows
+- Focus on behavioral triggers
 
-Risk logic:
-- high → late-night + heavy food + stress
-- medium → moderate timing or frequency
-- low → occasional or low-impact
+Each window must include:
+- timeRange
+- risk
+- reason (behavioral cause)
+- impact (how it affects energy, sleep, or focus)
 
 Output JSON:
 {
   "windows": [
     {
       "timeRange": "",
+      "risk": "low" | "medium" | "high",
       "reason": "",
-      "risk": "low" | "medium" | "high"
+      "impact": ""
     }
   ]
 }
 `;
 
 export const NUDGE_PROMPT = (persona: string, windows: string) => `
-Task: Generate realistic food nudges for Indian students.
+${MASTER_SYSTEM_PROMPT}
+
+Task: Generate practical nudges for improving eating behavior.
 
 Input:
 Persona:
@@ -84,13 +102,18 @@ ${windows}
 
 Constraints:
 - Use Indian hostel/canteen food
-- No extreme diets
-- Suggest swaps or small changes
-- Respect budget: low/medium/high
+- No strict dieting
+- Respect budget
+- Focus on small realistic changes
 
-Instructions:
-- For each window, give 1–2 nudges
-- Keep actions practical this week
+For each window:
+- 1–2 nudges
+
+Each nudge must include:
+- title
+- action
+- benefit (energy/focus/sleep)
+- reasoning (why this works)
 
 Output JSON:
 {
@@ -98,7 +121,8 @@ Output JSON:
     {
       "title": "",
       "action": "",
-      "benefit": ""
+      "benefit": "energy" | "focus" | "sleep",
+      "reasoning": ""
     }
   ]
 }

@@ -67,6 +67,10 @@ export function DangerTimeline({ windows }: DangerTimelineProps) {
                 <p className="text-sm text-gray-600 leading-relaxed">
                   {w.reason}
                 </p>
+                <div className="mt-2 text-xs text-gray-500">
+                  <span className="font-bold text-gray-700 uppercase tracking-tighter mr-1">Impact:</span>
+                  {w.impact}
+                </div>
               </div>
             </div>
           );

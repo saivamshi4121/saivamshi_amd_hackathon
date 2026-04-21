@@ -16,8 +16,11 @@ export function NudgeCard({ nudge }: NudgeCardProps) {
           👉 {nudge.action}
         </p>
         <div className="text-xs text-green-700 bg-white/60 px-3 py-1.5 rounded-md inline-block mt-1">
-          💡 {nudge.benefit}
+          💡 Improves {nudge.benefit}
         </div>
+        <p className="text-[11px] text-green-800/60 italic pt-2 border-t border-green-200/50">
+          {nudge.reasoning}
+        </p>
       </CardContent>
     </Card>
   );

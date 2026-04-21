@@ -42,6 +42,11 @@ export function PatternCard({ pattern }: PatternCardProps) {
             </span>
           ))}
         </div>
+
+        <p className="text-[11px] text-gray-500 italic pt-1 border-t border-gray-50">
+          <span className="font-semibold not-italic mr-1">Why:</span>
+          {pattern.reasoning}
+        </p>
       </CardContent>
     </Card>
   );
