@@ -1,73 +1,78 @@
 # TriggerNudge ⚡
+> **Behavioral Nutrition for the Indian Campus.**
 
-**AI-powered behavioral nutrition for Indian college students.**
+TriggerNudge is an AI-powered coach designed to help Indian college students fix their eating habits without the guilt of calorie counting. We focus on **Behavioral Design**—identifying the specific "Danger Windows" in a student's day and providing realistic, budget-friendly nudges.
 
-TriggerNudge is a practical food coach that identifies "danger windows" in a student's day—like the 11 PM Maggi craze or the 5 PM Samosa spiral—and provides realistic, budget-friendly nudges to improve energy, focus, and sleep.
+---
 
-![TriggerNudge Landing Page](public/screenshot_hero.png) *(Note: Add your screenshot here)*
+## 🚩 The Problem Statement
 
-## ✨ Features
+### The "Canteen-to-Cram" Cycle
+Indian college students, especially those in hostels, face a unique set of nutritional challenges:
+1.  **Erratic Schedules**: Late-night labs, midnight study sessions, and morning-rush classes.
+2.  **The Canteen Trap**: Cheap, fried snacks (Samosas, Maggi, Bread Pakora) are the only available options during peak hunger.
+3.  **Stress Eating**: Academic pressure leads to "revenge bedtime procrastination" and late-night junk food spirals.
+4.  **Ineffective Tracking**: Existing apps focus on calorie counting and "perfect diets" which are impossible to maintain on a mess-food budget.
 
-- **Gen-Z Styled UI**: Clean, dark-mode landing page with neon gradients and smooth animations.
-- **Voice-to-Log**: Hands-free meal logging using the Web Speech API (optimized for Indian English/Hinglish).
-- **Multi-Agent AI Pipeline**:
-  - **Pattern Agent**: Extracts behavioral eating habits from free-form logs.
-  - **Danger Agent**: Identifies high-risk windows where energy crashes happen.
-  - **Nudge Agent**: Provides realistic canteen/hostel-safe swaps.
-- **Indestructible Demo Architecture**:
-  - **Primary**: Gemini 2.5 Flash.
-  - **Fallback**: Gemma 3 via OpenRouter.
-  - **Safe Mode**: Automatic high-quality mock data if all AI APIs hit rate limits.
-- **Privacy First**: No database, no tracking. We don't track calories — we redesign habits.
+**The result?** Students face constant energy crashes, brain fog during exams, and poor long-term metabolic health.
 
-## 🛠️ Tech Stack
+---
 
-- **Framework**: Next.js 14 (App Router)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS + Shadcn UI
-- **Animations**: Framer Motion
-- **AI Models**: Google Gemini 2.5 Flash, Gemma (OpenRouter)
+## 📝 The Example: A Day in the Life
 
-## 🚀 Getting Started
+**The Input Log:**
+> "Woke up at 9:30 AM for a 10 AM lab, so skipped breakfast. Had 3 cups of coffee to stay awake. By 2 PM I was starving and had a double-plate of Chole Bhature at the mess. Felt like a zombie afterward and slept till 5 PM. Woke up groggy, had a Samosa and Chai while studying. At 11 PM, I made Maggi with extra masala because I couldn't focus on my assignment."
 
-### 1. Clone & Install
-```bash
-git clone https://github.com/your-username/trigger-nudge.git
-cd trigger-nudge
-npm install
-```
+**The TriggerNudge Analysis:**
+- **Pattern Found**: *The Hunger Trap*. Skipping breakfast leads to a high-carb lunch "overcompensation," causing a massive insulin spike and subsequent energy crash (the 3 PM zombie state).
+- **Danger Window**: **11 PM – 12 AM**. High-risk zone where fatigue-induced hunger leads to instant noodle consumption.
 
-### 2. Set Up Environment
-Create a `.env.local` file based on `.env.example`:
-```bash
-cp .env.example .env.local
-```
-Add your `GEMINI_API_KEY` from [Google AI Studio](https://aistudio.google.com/app/apikey).
+---
 
-### 3. Run Locally
-```bash
-npm run dev
-```
+## 💡 The Solution: TriggerNudge AI
 
-## 🚢 Deployment (Google Cloud Run)
+TriggerNudge doesn't tell you to "eat more salad." It uses a **Multi-Agent AI Pipeline** to redesign your habits:
 
-The project is pre-configured for **Google Cloud Run**.
+1.  **Voice-First Interface**: Students can speak their food log in Hinglish/Indian English, making logging as easy as sending a voice note to a friend.
+2.  **Danger Window Identification**: Instead of tracking every meal, we find the **two hours** in your day where 80% of your bad decisions happen.
+3.  **Realistic Nudges**: We suggest swaps that are actually available in an Indian hostel:
+    - *Don't have Maggi?* "Add an egg or a handful of peanuts to your Maggi to slow down the sugar spike."
+    - *Skipped Breakfast?* "Grab a banana or a handful of almonds from the gate stall before your 10 AM lab."
 
-### One-Click Deploy (Windows/PowerShell)
+---
+
+## ⚙️ How it Works (Technical Architecture)
+
+TriggerNudge is built on a resilient, multi-model AI architecture:
+
+- **Primary Agent (Gemini 2.5 Flash)**: Handles complex behavioral pattern recognition and danger window mapping using structured JSON output.
+- **Fallback Agent (Gemma 3 via OpenRouter)**: Injected with a strict system prompt to handle requests if Gemini hits rate limits or latency issues.
+- **Emergency Safe Mode**: If all APIs fail, a hardcoded behavioral logic engine kicks in to ensure the student always receives high-quality guidance.
+- **Frontend**: Next.js 14 with Framer Motion for a "Gen-Z" dark-mode aesthetic.
+
+---
+
+## 🚀 Deployment
+
+The app is containerized with **Docker** and ready for **Google Cloud Run**.
+
+### Quick Start
+1. `npm install`
+2. Set `GEMINI_API_KEY` in `.env.local`
+3. `npm run dev`
+
+### One-Command Deploy
 ```powershell
 .\deploy.ps1
 ```
 
-### Manual Deploy (Linux/macOS)
-1. Ensure `gcloud` CLI is authenticated and project is set.
-2. Run the build and deploy script:
-```bash
-chmod +x deploy.sh
-./deploy.sh
-```
+---
 
-## 🛡️ License
-MIT
+## 🎯 Conclusion
+
+TriggerNudge is more than an app; it's a behavioral intervention. By focusing on the **context** of eating (timing, mood, and budget) rather than just the content, we help students regain their energy and focus. 
+
+**Fix your food habits. Not your vibe.** ⚡
 
 ---
-Built at **AMD Slingshot Prompt-a-thon** 🚀
+Built for the **AMD Slingshot Prompt-a-thon** 🚀
